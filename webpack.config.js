@@ -8,7 +8,7 @@ const extractPlugin = new MiniCssExtractPlugin({
 });
 
 module.exports = {
-  entry: "./src/js/app.js",
+  entry: "./src/js/index.js",
   devtool: "inline-source-map",
   output: {
     path: path.resolve(__dirname, "dist"),
