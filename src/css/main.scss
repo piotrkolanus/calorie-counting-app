@@ -1,11 +1,3 @@
-* {
-    margin: 0;
-    padding: 0;
-}
-html {
-    background-color: orangered;
-}
-
-.container{
-    background-color:limegreen;
-}
+@import "base";
+@import "layout";
+@import "components";

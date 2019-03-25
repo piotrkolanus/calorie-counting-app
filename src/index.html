@@ -5,10 +5,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Calorie counter</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
     <link rel="stylesheet" href="dist/main.css">
 </head>
 <body>
-    <div id="app">omg</div>
+    <div id="app">
+        <header class="header">
+            <h1>Calorie Counting</h1>
+        </header>
+        <div class="container">
+            <div class="toggle-form">
+                <button class="toggle-form__button">Add new meal</button>
+            </div>
+            <div class="form-container">
+                <form class="form">
+                    <div class="form-box">
+                    <fieldset>
+                        <label for="form__input" class="form_label">Meal</label>
+                        <input type="text" class="form__input">
+                    </fieldset>
+                    <fieldset>
+                        <label for="form__input" class="form_label">Calories</label>
+                        <input type="text" class="form__input">
+                    </fieldset>
+                    </div>
+                </form>
+                <div class="form-button-box">
+                    <button class="form-button-box__button">Save</button>
+                    <button class="form-button-box__button">Cancel</button>
+                </div>    
+            </div>
+        </div>
+    </div>
 <script src="dist/bundle.js"></script>
 </body>
 </html>
