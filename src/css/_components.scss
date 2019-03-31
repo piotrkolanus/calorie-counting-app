@@ -78,10 +78,6 @@
   }
 }
 
-// .form-box {
-//   align-self: center;
-// }
-
 .form-button-box {
   display: flex;
 
@@ -107,4 +103,39 @@
       transform: translateY(2px);
     }
   }
+}
+
+table { 
+  margin: 2rem auto 0;
+  width: 20%; 
+  border-collapse: collapse; 
+
+  tr {
+    background: #ddd;
+  }
+
+  tr:nth-of-type(odd) { 
+    background: #eee; 
+  }
+
+  tr:last-of-type {
+    background: #fff;
+  }
+  
+  th { 
+    background: #333; 
+    color: white; 
+    font-weight: bold; 
+  }
+
+  td, th { 
+    padding: 6px; 
+    border: 1px solid #ccc; 
+    text-align: left; 
+  }
+}
+
+.no-content {
+  color:#fff;
+  text-align: center;
 }
