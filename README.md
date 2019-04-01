@@ -1,4 +1,4 @@
-# seriesgram
+# Calorie Counter
 
 App for tracking calories intake
 
