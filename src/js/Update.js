@@ -2,7 +2,9 @@ const MESSAGES = {
   SHOW_FORM: "SHOW_FORM",
   MEAL_INPUT: "MEAL_INPUT",
   CALORIES_INPUT: "CALORIES_INPUT",
-  SAVE_MEAL: "SAVE_MEAL"
+  SAVE_MEAL: "SAVE_MEAL",
+  DELETE_MEAL: "DELETE_MEAL",
+  EDIT_MEAL: "EDIT_MEAL"
 };
 
 export function showFormMsg(showForm) {
@@ -16,6 +18,20 @@ export function mealInputMsg(description) {
   return {
     type: MESSAGES.MEAL_INPUT,
     description
+  };
+}
+
+export function deleteMealMsg(id) {
+  return {
+    type: MESSAGES.DELETE_MEAL,
+    id
+  };
+}
+
+export function editMealMsg(editId) {
+  return {
+    type: MESSAGES.EDIT_MEAL,
+    editId
   };
 }
 
@@ -43,7 +59,30 @@ function update(msg, model) {
       return { ...model, calories };
     }
     case MESSAGES.SAVE_MEAL: {
-      return add(msg, model);
+      const { editId } = model;
+      const updatedModel = editId !== null ? edit(msg, model) : add(msg, model);
+
+      return updatedModel;
+    }
+    case MESSAGES.DELETE_MEAL: {
+      const { id } = msg;
+
+      const meals = model.meals.filter(meal => meal.id !== id);
+      return { ...model, meals };
+    }
+    case MESSAGES.EDIT_MEAL: {
+      const { editId } = msg;
+      const meal = model.meals.find(meal => meal.id === editId);
+
+      const { description, calories } = meal;
+
+      return {
+        ...model,
+        editId,
+        description,
+        calories,
+        showForm: true
+      };
     }
   }
   return model;
@@ -60,6 +99,25 @@ function add(msg, model) {
     description: "",
     calories: 0,
     showForm: false
+  };
+}
+
+function edit(msg, model) {
+  const { description, calories, editId } = model;
+  const meals = model.meals.map(meal => {
+    if (meal.id === editId) {
+      return { ...meal, description, calories };
+    }
+    return meal;
+  });
+
+  return {
+    ...model,
+    meals,
+    description: "",
+    calories: 0,
+    showForm: false,
+    editId: null
   };
 }
 

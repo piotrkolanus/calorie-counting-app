@@ -4,7 +4,9 @@ import {
   showFormMsg,
   mealInputMsg,
   caloriesInputMsg,
-  saveMealMsg
+  saveMealMsg,
+  deleteMealMsg,
+  editMealMsg
 } from "./Update";
 
 const {
@@ -22,7 +24,8 @@ const {
   tr,
   th,
   td,
-  tbody
+  tbody,
+  i
 } = hh(h);
 
 function cell(tag, value) {
@@ -33,29 +36,26 @@ const tableHeader = thead([
   tr([th("", "Meal"), th("", "Calories"), th("", "")])
 ]);
 
-// const tableHeader = thead([
-//   tr([cell(th, "Meal"), cell(th, "Calories"), cell(th, "")])
-// ]);
-
 function mealRow(dispatch, meal) {
-  console.log(meal.description);
-  console.log(meal.calories);
-  return tr({}, [td("", meal.description), td("", meal.calories), td("", "")]);
+  return tr({}, [
+    td("", meal.description),
+    td("", meal.calories),
+    td("", [
+      i({
+        className: "icon fa fa-trash-o",
+        onclick: () => dispatch(deleteMealMsg(meal.id))
+      }),
+      i({
+        className: "icon fa fa-pencil-square-o",
+        onclick: () => dispatch(editMealMsg(meal.id))
+      })
+    ])
+  ]);
 }
-// function mealRow(dispatch, meal) {
-//   console.log(meal.description);
-//   console.log(meal.calories);
-//   return tr({}, [
-//     cell(td, meal.description),
-//     cell(td, meal.calories),
-//     cell(td, "")
-//   ]);
-// }
 
 function totalRow(meals) {
   const total = meals.reduce((acc, obj) => acc + obj.calories, 0);
-  console.log(meals);
-  console.log(total);
+
   return tr({}, [td("", "Total:"), td("", total), td("", "")]);
 }
 
@@ -137,24 +137,11 @@ function formView(dispatch, model) {
   ]);
 }
 
-function tableHeading() {
-  return thead({}, [tr({}, [th({}, "Meals"), th({}, "Calories")])]);
-}
-
-function tableRow() {
-  return tr({}, [td({}, "Dinner"), td({}, "380")]);
-}
-
-// function mealsTable(dispatch, model) {
-//   return table({}, [tableHeading(), tbody({}, [tableRow()])]);
-// }
-
 function view(dispatch, model) {
   return div({ className: "container" }, [
     header({ className: "header" }, [h1({}, "Calorie Counter")]),
     formView(dispatch, model),
-    tableView(dispatch, model.meals),
-    pre(JSON.stringify(model, null, 2))
+    tableView(dispatch, model.meals)
   ]);
 }
 

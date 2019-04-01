@@ -1,6 +1,7 @@
 #app {
-  max-width: 120rem;
-  margin: 8rem auto;
+  display:flex;
+  max-width: 100rem;
+  margin: 5rem auto;
   background-color: var(--color-grey-light-2);
   box-shadow: var(--shadow-dark);
 
@@ -20,7 +21,6 @@
 
 
 .container {
-  flex: 1;
-  background-color: orangered;
-
+  flex:1;
+  background-color: #fc6600;
 }

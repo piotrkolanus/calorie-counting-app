@@ -106,7 +106,7 @@
 }
 
 table { 
-  margin: 2rem auto 0;
+  margin: 2rem auto 2rem;
   width: 20%; 
   border-collapse: collapse; 
 
@@ -138,4 +138,11 @@ table {
 .no-content {
   color:#fff;
   text-align: center;
+}
+
+.icon{
+  padding-top:.5rem;
+  padding-right:.5rem;
+  margin:auto;
+  cursor:pointer;
 }
